@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Olivia Cooper — Journalism Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --brown-dark:  #2b1d0e;
+      --brown-mid:   #3d2510;
+      --brown-light: #6b3e1e;
+      --cream:       #f5efe6;
+      --cream-warm:  #ede3d4;
+      --cream-deep:  #d9cbb8;
+      --text-dark:   #1a1008;
+      --text-mid:    #4a3020;
+      --accent:      #c9a97a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text-dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--brown-dark);
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 1rem 2rem;
+    }
+    nav a {
+      color: var(--cream);
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    nav a:hover { opacity: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--brown-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,169,122,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-script {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      animation: fadeUp 1s ease both;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      color: var(--cream);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1;
+      animation: fadeUp 1s ease 0.15s both;
+    }
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      animation: fadeUp 1s ease 0.3s both;
+    }
+    .hero-tagline {
+      margin-top: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--cream-deep);
+      opacity: 0.75;
+      animation: fadeUp 1s ease 0.45s both;
+    }
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--accent);
+      margin: 2rem auto;
+      animation: fadeUp 1s ease 0.55s both;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--accent);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      animation: bounce 2s ease infinite;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 2rem; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--brown-dark);
+    }
+    .section-heading em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ── INTRO STRIP ── */
+    .intro-strip {
+      background: var(--cream-warm);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+    .intro-img-wrap {
+      position: relative;
+    }
+    .intro-img-wrap img,
+    .intro-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .intro-img-placeholder {
+      background: var(--brown-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-deep);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      opacity: 0.6;
+      text-align: center;
+      padding: 1rem;
+    }
+    .intro-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      right: -12px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent);
+      z-index: -1;
+    }
+    .intro-text .big-stat {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--brown-dark);
+      margin: 1.5rem 0 0.5rem;
+      line-height: 1.2;
+    }
+    .intro-text p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+      margin-top: 0.75rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: var(--brown-dark);
+      color: var(--cream);
+    }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-text .section-heading { color: var(--cream); }
+    .about-text p {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--cream-deep);
+      opacity: 0.85;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .stat-item {
+      border-top: 1px solid var(--accent);
+      padding-top: 1rem;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-deep);
+      opacity: 0.7;
+      margin-top: 0.2rem;
+    }
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--brown-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-deep);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      opacity: 0.5;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* ── PORTFOLIO ── */
+    .portfolio-section {
+      background: var(--cream);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .portfolio-header .section-heading { color: var(--brown-dark); }
+
+    .beats {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .beat-tag {
+      border: 1px solid var(--accent);
+      padding: 0.4rem 1.2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .beat-tag:hover, .beat-tag.active {
+      background: var(--brown-dark);
+      color: var(--cream);
+      border-color: var(--brown-dark);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    .portfolio-card {
+      background: var(--cream-warm);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(43,29,14,0.12);
+    }
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--brown-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-deep);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      opacity: 0.5;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb-label {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: var(--accent);
+      color: var(--brown-dark);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-beat {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+      line-height: 1.3;
+    }
+    .card-desc {
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+    }
+    .card-skills {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .skill-pill {
+      background: var(--cream-deep);
+      color: var(--text-mid);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.2rem 0.6rem;
+      text-transform: uppercase;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      background: var(--brown-dark);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .video-section .section-heading { color: var(--cream); }
+    .video-section .section-label { color: var(--accent); }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      text-align: left;
+    }
+    .video-card {
+      background: var(--brown-mid);
+      overflow: hidden;
+    }
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #1a1008;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-deep);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      opacity: 0.4;
+    }
+    /* When you have a real YouTube embed, replace the div above with:
+       <iframe width="100%" style="aspect-ratio:16/9;border:0"
+         src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    */
+    .video-card-body {
+      padding: 1.2rem 1.5rem;
+    }
+    .video-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--cream);
+    }
+    .video-card-sub {
+      font-size: 0.75rem;
+      color: var(--cream-deep);
+      opacity: 0.6;
+      margin-top: 0.3rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--cream-warm);
+      text-align: center;
+      padding: 7rem 2rem;
+    }
+    .contact-section .section-heading { color: var(--brown-dark); }
+    .contact-section p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+    .contact-email {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 1rem 3rem;
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .contact-email:hover { background: var(--brown-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown-dark);
+      text-align: center;
+      padding: 2rem;
+      color: var(--cream-deep);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .intro-strip,
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      nav { gap: 1.2rem; flex-wrap: wrap; font-size: 0.65rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#video">Video Work</a>
+    <a href="#photography">Photography</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-script">Olivia Cooper</div>
+    <div class="hero-title">Journalism<br>Portfolio</div>
+    <div class="hero-sub">Storytelling · Video · Photography</div>
+    <div class="hero-tagline">Telling honest stories with creative freedom.</div>
+    <div class="hero-divider"></div>
+    <div class="scroll-hint">↓ Scroll</div>
+  </section>
+
+  <!-- INTRO STRIP -->
+  <div style="background: var(--cream-warm); padding: 5rem 2rem;">
+    <div class="intro-strip reveal">
+      <div class="intro-img-wrap">
+        <div class="intro-img-placeholder">
+          📷 Add your photo here<br><br>
+          <small style="font-size:0.75rem">(Replace this with an &lt;img&gt; tag)</small>
+        </div>
+      </div>
+      <div class="intro-text">
+        <div class="section-label">What I Do</div>
+        <div class="section-heading">Stories that <em>connect</em></div>
+        <div class="big-stat">Visual journalism<br>that moves people.</div>
+        <p>
+          From short-form video to photo essays, I craft narratives that feel personal, 
+          urgent, and real. My work lives at the intersection of documentary instinct 
+          and creative design.
+        </p>
+        <p style="margin-top: 0.75rem;">
+          <strong>Currently:</strong> Journalism student at the University of Kansas, 
+          building a body of work across storytelling, video, and photography.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-inner reveal">
+      <div class="about-text">
+        <div class="section-label">About Me</div>
+        <div class="section-heading">Hi, I'm <em>Olivia.</em></div>
+        <p>
+          I'm a 20-year-old journalism student at the University of Kansas with a passion 
+          for storytelling that goes beyond the headline. I believe the best journalism 
+          feels like a conversation — honest, human, and worth your time.
+        </p>
+        <p>
+          My focus spans three areas: long-form storytelling, video production, and 
+          documentary photography. Whether I'm behind a camera or at a keyboard, 
+          I'm chasing the same thing — a story that makes you feel something.
+        </p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Core Beats</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Portfolio Pieces</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">KU</div>
+            <div class="stat-label">University of Kansas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">'25</div>
+            <div class="stat-label">Expected Grad</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-placeholder">
+        📷 Add your photo here<br><br>
+        <small style="font-size:0.75rem">(Replace with &lt;img&gt; tag)</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio-section" id="portfolio" style="padding: 6rem 2rem;">
+    <div class="portfolio-header reveal">
+      <div class="section-label">Selected Work</div>
+      <div class="section-heading">My <em>Portfolio</em></div>
+      <div class="beats">
+        <div class="beat-tag active">All</div>
+        <div class="beat-tag">Storytelling</div>
+        <div class="beat-tag">Video</div>
+        <div class="beat-tag">Photography</div>
+      </div>
+    </div>
+
+    <div class="portfolio-grid reveal">
+
+      <!-- CARD 1 -->
+      <div class="portfolio-card">
+        <div class="card-thumb">
+          <span class="card-thumb-label">Storytelling</span>
+          📝 Add image/thumbnail
+        </div>
+        <div class="card-body">
+          <div class="card-beat">Storytelling</div>
+          <div class="card-title">Piece Title Goes Here</div>
+          <div class="card-desc">
+            <strong>Goal:</strong> Replace this with what you set out to do in the piece.<br><br>
+            <strong>About:</strong> A brief description of what this piece is about and why it matters.<br><br>
+            <strong>Skills used:</strong> Interviewing, writing, research, narrative structure.
+          </div>
+          <div class="card-skills">
+            <span class="skill-pill">Interviewing</span>
+            <span class="skill-pill">Long-form Writing</span>
+            <span class="skill-pill">Research</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="portfolio-card">
+        <div class="card-thumb">
+          <span class="card-thumb-label">Video</span>
+          🎬 Add thumbnail
+        </div>
+        <div class="card-body">
+          <div class="card-beat">Video</div>
+          <div class="card-title">Video Piece Title Here</div>
+          <div class="card-desc">
+            <strong>Goal:</strong> What you set out to achieve with this video piece.<br><br>
+            <strong>About:</strong> What the video covers and its significance.<br><br>
+            <strong>Skills used:</strong> Filming, editing, audio, storytelling.
+          </div>
+          <div class="card-skills">
+            <span class="skill-pill">Filming</span>
+            <span class="skill-pill">Video Editing</span>
+            <span class="skill-pill">Audio</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="portfolio-card">
+        <div class="card-thumb">
+          <span class="card-thumb-label">Photography</span>
+          📷 Add photo
+        </div>
+        <div class="card-body">
+          <div class="card-beat">Photography</div>
+          <div class="card-title">Photo Essay Title Here</div>
+          <div class="card-desc">
+            <strong>Goal:</strong> What you aimed to capture or communicate visually.<br><br>
+            <strong>About:</strong> The subject and story behind the photo essay.<br><br>
+            <strong>Skills used:</strong> Photography, composition, photo editing, visual storytelling.
+          </div>
+          <div class="card-skills">
+            <span class="skill-pill">Photography</span>
+            <span class="skill-pill">Composition</span>
+            <span class="skill-pill">Lightroom</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="portfolio-card">
+        <div class="card-thumb">
+          <span class="card-thumb-label">Storytelling</span>
+          📝 Add image
+        </div>
+        <div class="card-body">
+          <div class="card-beat">Storytelling</div>
+          <div class="card-title">Fourth Piece Title Here</div>
+          <div class="card-desc">
+            <strong>Goal:</strong> What you aimed to accomplish with this piece.<br><br>
+            <strong>About:</strong> A summary of the story and its impact.<br><br>
+            <strong>Skills used:</strong> Reporting, editing, source development.
+          </div>
+          <div class="card-skills">
+            <span class="skill-pill">Reporting</span>
+            <span class="skill-pill">Editing</span>
+            <span class="skill-pill">Source Development</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="video-section" id="video">
+    <div class="section-label">Moving Image</div>
+    <div class="section-heading" style="color: var(--cream);">Video <em>Work</em></div>
+    <div class="video-grid reveal">
+
+      <div class="video-card">
+        <!-- Replace this div with a YouTube iframe when ready:
+             <iframe width="100%" style="aspect-ratio:16/9;border:0"
+               src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+        -->
+        <div class="video-embed">🎬 Embed YouTube video here</div>
+        <div class="video-card-body">
+          <div class="video-card-title">Video Title One</div>
+          <div class="video-card-sub">Category · Year</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-embed">🎬 Embed YouTube video here</div>
+        <div class="video-card-body">
+          <div class="video-card-title">Video Title Two</div>
+          <div class="video-card-sub">Category · Year</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-embed">🎬 Embed YouTube video here</div>
+        <div class="video-card-body">
+          <div class="video-card-title">Video Title Three</div>
+          <div class="video-card-sub">Category · Year</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+  <section id="photography" style="background: var(--cream); padding: 6rem 2rem; max-width: 1200px; margin: 0 auto;">
+    <div class="reveal" style="text-align:center; margin-bottom: 3rem;">
+      <div class="section-label">Visual Stories</div>
+      <div class="section-heading">Photography</div>
+    </div>
+    <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem;">
+      <!-- Replace each div with <img src="your-photo.jpg" style="width:100%;aspect-ratio:1/1;object-fit:cover"> -->
+      <div style="background:var(--brown-mid);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:var(--cream-deep);font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0.4;font-size:0.85rem;">📷 Photo</div>
+      <div style="background:var(--brown-light);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:var(--cream-deep);font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0.4;font-size:0.85rem;">📷 Photo</div>
+      <div style="background:var(--brown-mid);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:var(--cream-deep);font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0.4;font-size:0.85rem;">📷 Photo</div>
+      <div style="background:#4a3020;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:var(--cream-deep);font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0.4;font-size:0.85rem;">📷 Photo</div>
+      <div style="background:var(--brown-light);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:var(--cream-deep);font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0.4;font-size:0.85rem;">📷 Photo</div>
+      <div style="background:var(--brown-mid);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:var(--cream-deep);font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0.4;font-size:0.85rem;">📷 Photo</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <div class="section-heading">Let's <em>Connect</em></div>
+      <p>
+        Whether you're a hiring manager, editor, or collaborator — 
+        I'd love to hear from you. Good stories start with good conversations.
+      </p>
+      <a class="contact-email" href="mailto:your@email.com">your@email.com</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Olivia Cooper &nbsp;·&nbsp; Journalism Portfolio
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+
+    // Beat tag filter (visual only for now)
+    document.querySelectorAll('.beat-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        document.querySelectorAll('.beat-tag').forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
